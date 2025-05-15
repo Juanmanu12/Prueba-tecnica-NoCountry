@@ -6,11 +6,11 @@ Presentación de prueba técnica para el desarrollo de la plataforma de No Count
 
 En las especificaciones de la prueba técnica se presentaban 3 funcionalidades diferentes que la plataforma de No Country desea implementar en la plataforma junto con sus criterios de aceptación
 
-**Funcionalidad elegida:** Se selecciono la funcionalidad de Comunicación Interna
+**Funcionalidad elegida:** Se seleccionó la funcionalidad de Comunicación Interna
 
 ### Stack Tecnológico:
 
-Para el desarrollo de esta funcionalidad se utulizaron las siguientes tecnologías bajo solicitud estipulada en la prueba técnica:
+Para el desarrollo de esta funcionalidad se utilizaron las siguientes tecnologías bajo solicitud estipulada en la prueba técnica:
 
 - **Backend:** Node.js, Express, Typescript
 - **Base de datos:** Supabase(PostgreSQL)
@@ -28,3 +28,13 @@ Basandonos en los criterios bajo los cuales se desarrollará la plataforma, se e
 ## Autor:
 
 - [@Juanmanu12](https://github.com/Juanmanu12)
+
+## Ejecución:
+
+Para correr el proyecto una vez instalado en su máquina de preferencia ejecutar: 
+
+```bash
+  npm run start
+```
+
+
