@@ -9,14 +9,16 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  email     String   @unique
-  password  String
-  name      String
-  role      Role
-  type      Type     @default(USER)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           String   @id @default(uuid())
+  email        String   @unique
+  password     String
+  name         String
+  role         Role
+  type         Type     @default(USER)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  createdChats Chat[]   @relation("ChatCreator")
+  chats        Chat[]   @relation("ChatMembers")
 }
 
 enum Role {
@@ -36,9 +38,14 @@ enum Type {
 }
 
 model Chat {
-  id   String  @id @default(uuid())
-  name String?
-  type String
+  id        String   @id @default(uuid())
+  name      String?
+  type      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  creatorId String
+  creator   User     @relation("ChatCreator", fields: [creatorId], references: [id], onDelete: Cascade)
+  members   User[]   @relation("ChatMembers")
 }
 
 model Message {

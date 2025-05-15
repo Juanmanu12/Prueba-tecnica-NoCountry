@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
+  output   = "../node_modules/.prisma/client"
 }
 
 datasource db {
@@ -17,6 +17,8 @@ model User {
   type      Type      @default(USER)
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+  createdChats Chat[] @relation("ChatCreator")
+  chats       Chat[]   @relation("ChatMembers")
 }
 
 enum Role {
@@ -39,10 +41,14 @@ model Chat {
   id        String    @id @default(uuid())
   name      String?       
   type      String
-  createdChats Chat[] @relation("ChatCreator")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  creatorId String
+  creator   User   @relation("ChatCreator", fields: [creatorId], references: [id], onDelete: Cascade)
+  members User[] @relation("ChatMembers")
 }
 
 model Message {
-  id        String    @id @defaul(uuid())
+  id        String    @id @default(uuid())
   text      String
 }

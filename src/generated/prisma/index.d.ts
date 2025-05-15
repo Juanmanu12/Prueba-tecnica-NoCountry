@@ -1081,6 +1081,76 @@ export namespace Prisma {
    */
 
 
+  /**
+   * Count Type UserCountOutputType
+   */
+
+  export type UserCountOutputType = {
+    createdChats: number
+    chats: number
+  }
+
+  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    createdChats?: boolean | UserCountOutputTypeCountCreatedChatsArgs
+    chats?: boolean | UserCountOutputTypeCountChatsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCountOutputType
+     */
+    select?: UserCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountCreatedChatsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ChatWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountChatsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ChatWhereInput
+  }
+
+
+  /**
+   * Count Type ChatCountOutputType
+   */
+
+  export type ChatCountOutputType = {
+    members: number
+  }
+
+  export type ChatCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    members?: boolean | ChatCountOutputTypeCountMembersArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ChatCountOutputType without action
+   */
+  export type ChatCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatCountOutputType
+     */
+    select?: ChatCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ChatCountOutputType without action
+   */
+  export type ChatCountOutputTypeCountMembersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserWhereInput
+  }
+
 
   /**
    * Models
@@ -1274,6 +1344,9 @@ export namespace Prisma {
     type?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    createdChats?: boolean | User$createdChatsArgs<ExtArgs>
+    chats?: boolean | User$chatsArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1310,10 +1383,20 @@ export namespace Prisma {
   }
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "name" | "role" | "type" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    createdChats?: boolean | User$createdChatsArgs<ExtArgs>
+    chats?: boolean | User$chatsArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
-    objects: {}
+    objects: {
+      createdChats: Prisma.$ChatPayload<ExtArgs>[]
+      chats: Prisma.$ChatPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       email: string
@@ -1717,6 +1800,8 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    createdChats<T extends User$createdChatsArgs<ExtArgs> = {}>(args?: Subset<T, User$createdChatsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChatPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    chats<T extends User$chatsArgs<ExtArgs> = {}>(args?: Subset<T, User$chatsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChatPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1771,6 +1856,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1789,6 +1878,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1806,6 +1899,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * Filter, which User to fetch.
      */
@@ -1855,6 +1952,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where?: UserWhereInput
@@ -1903,6 +2004,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which Users to fetch.
      */
     where?: UserWhereInput
@@ -1945,6 +2050,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to create a User.
      */
@@ -1993,6 +2102,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to update a User.
      */
@@ -2060,6 +2173,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * The filter to search for the User to update in case it exists.
      */
     where: UserWhereUniqueInput
@@ -2086,6 +2203,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter which User to delete.
      */
     where: UserWhereUniqueInput
@@ -2106,6 +2227,54 @@ export namespace Prisma {
   }
 
   /**
+   * User.createdChats
+   */
+  export type User$createdChatsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chat
+     */
+    select?: ChatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chat
+     */
+    omit?: ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatInclude<ExtArgs> | null
+    where?: ChatWhereInput
+    orderBy?: ChatOrderByWithRelationInput | ChatOrderByWithRelationInput[]
+    cursor?: ChatWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ChatScalarFieldEnum | ChatScalarFieldEnum[]
+  }
+
+  /**
+   * User.chats
+   */
+  export type User$chatsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chat
+     */
+    select?: ChatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chat
+     */
+    omit?: ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatInclude<ExtArgs> | null
+    where?: ChatWhereInput
+    orderBy?: ChatOrderByWithRelationInput | ChatOrderByWithRelationInput[]
+    cursor?: ChatWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ChatScalarFieldEnum | ChatScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2117,6 +2286,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
   }
 
 
@@ -2134,18 +2307,27 @@ export namespace Prisma {
     id: string | null
     name: string | null
     type: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    creatorId: string | null
   }
 
   export type ChatMaxAggregateOutputType = {
     id: string | null
     name: string | null
     type: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    creatorId: string | null
   }
 
   export type ChatCountAggregateOutputType = {
     id: number
     name: number
     type: number
+    createdAt: number
+    updatedAt: number
+    creatorId: number
     _all: number
   }
 
@@ -2154,18 +2336,27 @@ export namespace Prisma {
     id?: true
     name?: true
     type?: true
+    createdAt?: true
+    updatedAt?: true
+    creatorId?: true
   }
 
   export type ChatMaxAggregateInputType = {
     id?: true
     name?: true
     type?: true
+    createdAt?: true
+    updatedAt?: true
+    creatorId?: true
   }
 
   export type ChatCountAggregateInputType = {
     id?: true
     name?: true
     type?: true
+    createdAt?: true
+    updatedAt?: true
+    creatorId?: true
     _all?: true
   }
 
@@ -2245,6 +2436,9 @@ export namespace Prisma {
     id: string
     name: string | null
     type: string
+    createdAt: Date
+    updatedAt: Date
+    creatorId: string
     _count: ChatCountAggregateOutputType | null
     _min: ChatMinAggregateOutputType | null
     _max: ChatMaxAggregateOutputType | null
@@ -2268,35 +2462,69 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     type?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    creatorId?: boolean
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+    members?: boolean | Chat$membersArgs<ExtArgs>
+    _count?: boolean | ChatCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["chat"]>
 
   export type ChatSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     type?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    creatorId?: boolean
+    creator?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["chat"]>
 
   export type ChatSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     type?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    creatorId?: boolean
+    creator?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["chat"]>
 
   export type ChatSelectScalar = {
     id?: boolean
     name?: boolean
     type?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    creatorId?: boolean
   }
 
-  export type ChatOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "type", ExtArgs["result"]["chat"]>
+  export type ChatOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "type" | "createdAt" | "updatedAt" | "creatorId", ExtArgs["result"]["chat"]>
+  export type ChatInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+    members?: boolean | Chat$membersArgs<ExtArgs>
+    _count?: boolean | ChatCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ChatIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ChatIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }
 
   export type $ChatPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Chat"
-    objects: {}
+    objects: {
+      creator: Prisma.$UserPayload<ExtArgs>
+      members: Prisma.$UserPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string | null
       type: string
+      createdAt: Date
+      updatedAt: Date
+      creatorId: string
     }, ExtArgs["result"]["chat"]>
     composites: {}
   }
@@ -2691,6 +2919,8 @@ export namespace Prisma {
    */
   export interface Prisma__ChatClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    creator<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    members<T extends Chat$membersArgs<ExtArgs> = {}>(args?: Subset<T, Chat$membersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2723,6 +2953,9 @@ export namespace Prisma {
     readonly id: FieldRef<"Chat", 'String'>
     readonly name: FieldRef<"Chat", 'String'>
     readonly type: FieldRef<"Chat", 'String'>
+    readonly createdAt: FieldRef<"Chat", 'DateTime'>
+    readonly updatedAt: FieldRef<"Chat", 'DateTime'>
+    readonly creatorId: FieldRef<"Chat", 'String'>
   }
     
 
@@ -2739,6 +2972,10 @@ export namespace Prisma {
      * Omit specific fields from the Chat
      */
     omit?: ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatInclude<ExtArgs> | null
     /**
      * Filter, which Chat to fetch.
      */
@@ -2758,6 +2995,10 @@ export namespace Prisma {
      */
     omit?: ChatOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatInclude<ExtArgs> | null
+    /**
      * Filter, which Chat to fetch.
      */
     where: ChatWhereUniqueInput
@@ -2775,6 +3016,10 @@ export namespace Prisma {
      * Omit specific fields from the Chat
      */
     omit?: ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatInclude<ExtArgs> | null
     /**
      * Filter, which Chat to fetch.
      */
@@ -2824,6 +3069,10 @@ export namespace Prisma {
      */
     omit?: ChatOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatInclude<ExtArgs> | null
+    /**
      * Filter, which Chat to fetch.
      */
     where?: ChatWhereInput
@@ -2872,6 +3121,10 @@ export namespace Prisma {
      */
     omit?: ChatOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatInclude<ExtArgs> | null
+    /**
      * Filter, which Chats to fetch.
      */
     where?: ChatWhereInput
@@ -2915,6 +3168,10 @@ export namespace Prisma {
      */
     omit?: ChatOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatInclude<ExtArgs> | null
+    /**
      * The data needed to create a Chat.
      */
     data: XOR<ChatCreateInput, ChatUncheckedCreateInput>
@@ -2948,6 +3205,10 @@ export namespace Prisma {
      */
     data: ChatCreateManyInput | ChatCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -2962,6 +3223,10 @@ export namespace Prisma {
      * Omit specific fields from the Chat
      */
     omit?: ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatInclude<ExtArgs> | null
     /**
      * The data needed to update a Chat.
      */
@@ -3014,6 +3279,10 @@ export namespace Prisma {
      * Limit how many Chats to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -3028,6 +3297,10 @@ export namespace Prisma {
      * Omit specific fields from the Chat
      */
     omit?: ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatInclude<ExtArgs> | null
     /**
      * The filter to search for the Chat to update in case it exists.
      */
@@ -3055,6 +3328,10 @@ export namespace Prisma {
      */
     omit?: ChatOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatInclude<ExtArgs> | null
+    /**
      * Filter which Chat to delete.
      */
     where: ChatWhereUniqueInput
@@ -3075,6 +3352,30 @@ export namespace Prisma {
   }
 
   /**
+   * Chat.members
+   */
+  export type Chat$membersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    cursor?: UserWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+  /**
    * Chat without action
    */
   export type ChatDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3086,6 +3387,10 @@ export namespace Prisma {
      * Omit specific fields from the Chat
      */
     omit?: ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatInclude<ExtArgs> | null
   }
 
 
@@ -4076,7 +4381,10 @@ export namespace Prisma {
   export const ChatScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    type: 'type'
+    type: 'type',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    creatorId: 'creatorId'
   };
 
   export type ChatScalarFieldEnum = (typeof ChatScalarFieldEnum)[keyof typeof ChatScalarFieldEnum]
@@ -4204,6 +4512,8 @@ export namespace Prisma {
     type?: EnumTypeFilter<"User"> | $Enums.Type
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    createdChats?: ChatListRelationFilter
+    chats?: ChatListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -4215,6 +4525,8 @@ export namespace Prisma {
     type?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    createdChats?: ChatOrderByRelationAggregateInput
+    chats?: ChatOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -4229,6 +4541,8 @@ export namespace Prisma {
     type?: EnumTypeFilter<"User"> | $Enums.Type
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    createdChats?: ChatListRelationFilter
+    chats?: ChatListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -4266,12 +4580,22 @@ export namespace Prisma {
     id?: StringFilter<"Chat"> | string
     name?: StringNullableFilter<"Chat"> | string | null
     type?: StringFilter<"Chat"> | string
+    createdAt?: DateTimeFilter<"Chat"> | Date | string
+    updatedAt?: DateTimeFilter<"Chat"> | Date | string
+    creatorId?: StringFilter<"Chat"> | string
+    creator?: XOR<UserScalarRelationFilter, UserWhereInput>
+    members?: UserListRelationFilter
   }
 
   export type ChatOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrderInput | SortOrder
     type?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    creatorId?: SortOrder
+    creator?: UserOrderByWithRelationInput
+    members?: UserOrderByRelationAggregateInput
   }
 
   export type ChatWhereUniqueInput = Prisma.AtLeast<{
@@ -4281,12 +4605,20 @@ export namespace Prisma {
     NOT?: ChatWhereInput | ChatWhereInput[]
     name?: StringNullableFilter<"Chat"> | string | null
     type?: StringFilter<"Chat"> | string
+    createdAt?: DateTimeFilter<"Chat"> | Date | string
+    updatedAt?: DateTimeFilter<"Chat"> | Date | string
+    creatorId?: StringFilter<"Chat"> | string
+    creator?: XOR<UserScalarRelationFilter, UserWhereInput>
+    members?: UserListRelationFilter
   }, "id">
 
   export type ChatOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrderInput | SortOrder
     type?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    creatorId?: SortOrder
     _count?: ChatCountOrderByAggregateInput
     _max?: ChatMaxOrderByAggregateInput
     _min?: ChatMinOrderByAggregateInput
@@ -4299,6 +4631,9 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Chat"> | string
     name?: StringNullableWithAggregatesFilter<"Chat"> | string | null
     type?: StringWithAggregatesFilter<"Chat"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Chat"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Chat"> | Date | string
+    creatorId?: StringWithAggregatesFilter<"Chat"> | string
   }
 
   export type MessageWhereInput = {
@@ -4347,6 +4682,8 @@ export namespace Prisma {
     type?: $Enums.Type
     createdAt?: Date | string
     updatedAt?: Date | string
+    createdChats?: ChatCreateNestedManyWithoutCreatorInput
+    chats?: ChatCreateNestedManyWithoutMembersInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -4358,6 +4695,8 @@ export namespace Prisma {
     type?: $Enums.Type
     createdAt?: Date | string
     updatedAt?: Date | string
+    createdChats?: ChatUncheckedCreateNestedManyWithoutCreatorInput
+    chats?: ChatUncheckedCreateNestedManyWithoutMembersInput
   }
 
   export type UserUpdateInput = {
@@ -4369,6 +4708,8 @@ export namespace Prisma {
     type?: EnumTypeFieldUpdateOperationsInput | $Enums.Type
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdChats?: ChatUpdateManyWithoutCreatorNestedInput
+    chats?: ChatUpdateManyWithoutMembersNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -4380,6 +4721,8 @@ export namespace Prisma {
     type?: EnumTypeFieldUpdateOperationsInput | $Enums.Type
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdChats?: ChatUncheckedUpdateManyWithoutCreatorNestedInput
+    chats?: ChatUncheckedUpdateManyWithoutMembersNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -4419,42 +4762,66 @@ export namespace Prisma {
     id?: string
     name?: string | null
     type: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    creator: UserCreateNestedOneWithoutCreatedChatsInput
+    members?: UserCreateNestedManyWithoutChatsInput
   }
 
   export type ChatUncheckedCreateInput = {
     id?: string
     name?: string | null
     type: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    creatorId: string
+    members?: UserUncheckedCreateNestedManyWithoutChatsInput
   }
 
   export type ChatUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     type?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creator?: UserUpdateOneRequiredWithoutCreatedChatsNestedInput
+    members?: UserUpdateManyWithoutChatsNestedInput
   }
 
   export type ChatUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     type?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creatorId?: StringFieldUpdateOperationsInput | string
+    members?: UserUncheckedUpdateManyWithoutChatsNestedInput
   }
 
   export type ChatCreateManyInput = {
     id?: string
     name?: string | null
     type: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    creatorId: string
   }
 
   export type ChatUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     type?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ChatUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     type?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creatorId?: StringFieldUpdateOperationsInput | string
   }
 
   export type MessageCreateInput = {
@@ -4530,6 +4897,16 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type ChatListRelationFilter = {
+    every?: ChatWhereInput
+    some?: ChatWhereInput
+    none?: ChatWhereInput
+  }
+
+  export type ChatOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type UserCountOrderByAggregateInput = {
@@ -4632,27 +5009,51 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type UserListRelationFilter = {
+    every?: UserWhereInput
+    some?: UserWhereInput
+    none?: UserWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type UserOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type ChatCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     type?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    creatorId?: SortOrder
   }
 
   export type ChatMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     type?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    creatorId?: SortOrder
   }
 
   export type ChatMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     type?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    creatorId?: SortOrder
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -4688,6 +5089,32 @@ export namespace Prisma {
     text?: SortOrder
   }
 
+  export type ChatCreateNestedManyWithoutCreatorInput = {
+    create?: XOR<ChatCreateWithoutCreatorInput, ChatUncheckedCreateWithoutCreatorInput> | ChatCreateWithoutCreatorInput[] | ChatUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: ChatCreateOrConnectWithoutCreatorInput | ChatCreateOrConnectWithoutCreatorInput[]
+    createMany?: ChatCreateManyCreatorInputEnvelope
+    connect?: ChatWhereUniqueInput | ChatWhereUniqueInput[]
+  }
+
+  export type ChatCreateNestedManyWithoutMembersInput = {
+    create?: XOR<ChatCreateWithoutMembersInput, ChatUncheckedCreateWithoutMembersInput> | ChatCreateWithoutMembersInput[] | ChatUncheckedCreateWithoutMembersInput[]
+    connectOrCreate?: ChatCreateOrConnectWithoutMembersInput | ChatCreateOrConnectWithoutMembersInput[]
+    connect?: ChatWhereUniqueInput | ChatWhereUniqueInput[]
+  }
+
+  export type ChatUncheckedCreateNestedManyWithoutCreatorInput = {
+    create?: XOR<ChatCreateWithoutCreatorInput, ChatUncheckedCreateWithoutCreatorInput> | ChatCreateWithoutCreatorInput[] | ChatUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: ChatCreateOrConnectWithoutCreatorInput | ChatCreateOrConnectWithoutCreatorInput[]
+    createMany?: ChatCreateManyCreatorInputEnvelope
+    connect?: ChatWhereUniqueInput | ChatWhereUniqueInput[]
+  }
+
+  export type ChatUncheckedCreateNestedManyWithoutMembersInput = {
+    create?: XOR<ChatCreateWithoutMembersInput, ChatUncheckedCreateWithoutMembersInput> | ChatCreateWithoutMembersInput[] | ChatUncheckedCreateWithoutMembersInput[]
+    connectOrCreate?: ChatCreateOrConnectWithoutMembersInput | ChatCreateOrConnectWithoutMembersInput[]
+    connect?: ChatWhereUniqueInput | ChatWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -4704,8 +5131,114 @@ export namespace Prisma {
     set?: Date | string
   }
 
+  export type ChatUpdateManyWithoutCreatorNestedInput = {
+    create?: XOR<ChatCreateWithoutCreatorInput, ChatUncheckedCreateWithoutCreatorInput> | ChatCreateWithoutCreatorInput[] | ChatUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: ChatCreateOrConnectWithoutCreatorInput | ChatCreateOrConnectWithoutCreatorInput[]
+    upsert?: ChatUpsertWithWhereUniqueWithoutCreatorInput | ChatUpsertWithWhereUniqueWithoutCreatorInput[]
+    createMany?: ChatCreateManyCreatorInputEnvelope
+    set?: ChatWhereUniqueInput | ChatWhereUniqueInput[]
+    disconnect?: ChatWhereUniqueInput | ChatWhereUniqueInput[]
+    delete?: ChatWhereUniqueInput | ChatWhereUniqueInput[]
+    connect?: ChatWhereUniqueInput | ChatWhereUniqueInput[]
+    update?: ChatUpdateWithWhereUniqueWithoutCreatorInput | ChatUpdateWithWhereUniqueWithoutCreatorInput[]
+    updateMany?: ChatUpdateManyWithWhereWithoutCreatorInput | ChatUpdateManyWithWhereWithoutCreatorInput[]
+    deleteMany?: ChatScalarWhereInput | ChatScalarWhereInput[]
+  }
+
+  export type ChatUpdateManyWithoutMembersNestedInput = {
+    create?: XOR<ChatCreateWithoutMembersInput, ChatUncheckedCreateWithoutMembersInput> | ChatCreateWithoutMembersInput[] | ChatUncheckedCreateWithoutMembersInput[]
+    connectOrCreate?: ChatCreateOrConnectWithoutMembersInput | ChatCreateOrConnectWithoutMembersInput[]
+    upsert?: ChatUpsertWithWhereUniqueWithoutMembersInput | ChatUpsertWithWhereUniqueWithoutMembersInput[]
+    set?: ChatWhereUniqueInput | ChatWhereUniqueInput[]
+    disconnect?: ChatWhereUniqueInput | ChatWhereUniqueInput[]
+    delete?: ChatWhereUniqueInput | ChatWhereUniqueInput[]
+    connect?: ChatWhereUniqueInput | ChatWhereUniqueInput[]
+    update?: ChatUpdateWithWhereUniqueWithoutMembersInput | ChatUpdateWithWhereUniqueWithoutMembersInput[]
+    updateMany?: ChatUpdateManyWithWhereWithoutMembersInput | ChatUpdateManyWithWhereWithoutMembersInput[]
+    deleteMany?: ChatScalarWhereInput | ChatScalarWhereInput[]
+  }
+
+  export type ChatUncheckedUpdateManyWithoutCreatorNestedInput = {
+    create?: XOR<ChatCreateWithoutCreatorInput, ChatUncheckedCreateWithoutCreatorInput> | ChatCreateWithoutCreatorInput[] | ChatUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: ChatCreateOrConnectWithoutCreatorInput | ChatCreateOrConnectWithoutCreatorInput[]
+    upsert?: ChatUpsertWithWhereUniqueWithoutCreatorInput | ChatUpsertWithWhereUniqueWithoutCreatorInput[]
+    createMany?: ChatCreateManyCreatorInputEnvelope
+    set?: ChatWhereUniqueInput | ChatWhereUniqueInput[]
+    disconnect?: ChatWhereUniqueInput | ChatWhereUniqueInput[]
+    delete?: ChatWhereUniqueInput | ChatWhereUniqueInput[]
+    connect?: ChatWhereUniqueInput | ChatWhereUniqueInput[]
+    update?: ChatUpdateWithWhereUniqueWithoutCreatorInput | ChatUpdateWithWhereUniqueWithoutCreatorInput[]
+    updateMany?: ChatUpdateManyWithWhereWithoutCreatorInput | ChatUpdateManyWithWhereWithoutCreatorInput[]
+    deleteMany?: ChatScalarWhereInput | ChatScalarWhereInput[]
+  }
+
+  export type ChatUncheckedUpdateManyWithoutMembersNestedInput = {
+    create?: XOR<ChatCreateWithoutMembersInput, ChatUncheckedCreateWithoutMembersInput> | ChatCreateWithoutMembersInput[] | ChatUncheckedCreateWithoutMembersInput[]
+    connectOrCreate?: ChatCreateOrConnectWithoutMembersInput | ChatCreateOrConnectWithoutMembersInput[]
+    upsert?: ChatUpsertWithWhereUniqueWithoutMembersInput | ChatUpsertWithWhereUniqueWithoutMembersInput[]
+    set?: ChatWhereUniqueInput | ChatWhereUniqueInput[]
+    disconnect?: ChatWhereUniqueInput | ChatWhereUniqueInput[]
+    delete?: ChatWhereUniqueInput | ChatWhereUniqueInput[]
+    connect?: ChatWhereUniqueInput | ChatWhereUniqueInput[]
+    update?: ChatUpdateWithWhereUniqueWithoutMembersInput | ChatUpdateWithWhereUniqueWithoutMembersInput[]
+    updateMany?: ChatUpdateManyWithWhereWithoutMembersInput | ChatUpdateManyWithWhereWithoutMembersInput[]
+    deleteMany?: ChatScalarWhereInput | ChatScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutCreatedChatsInput = {
+    create?: XOR<UserCreateWithoutCreatedChatsInput, UserUncheckedCreateWithoutCreatedChatsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCreatedChatsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserCreateNestedManyWithoutChatsInput = {
+    create?: XOR<UserCreateWithoutChatsInput, UserUncheckedCreateWithoutChatsInput> | UserCreateWithoutChatsInput[] | UserUncheckedCreateWithoutChatsInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutChatsInput | UserCreateOrConnectWithoutChatsInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+  }
+
+  export type UserUncheckedCreateNestedManyWithoutChatsInput = {
+    create?: XOR<UserCreateWithoutChatsInput, UserUncheckedCreateWithoutChatsInput> | UserCreateWithoutChatsInput[] | UserUncheckedCreateWithoutChatsInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutChatsInput | UserCreateOrConnectWithoutChatsInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+  }
+
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type UserUpdateOneRequiredWithoutCreatedChatsNestedInput = {
+    create?: XOR<UserCreateWithoutCreatedChatsInput, UserUncheckedCreateWithoutCreatedChatsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCreatedChatsInput
+    upsert?: UserUpsertWithoutCreatedChatsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCreatedChatsInput, UserUpdateWithoutCreatedChatsInput>, UserUncheckedUpdateWithoutCreatedChatsInput>
+  }
+
+  export type UserUpdateManyWithoutChatsNestedInput = {
+    create?: XOR<UserCreateWithoutChatsInput, UserUncheckedCreateWithoutChatsInput> | UserCreateWithoutChatsInput[] | UserUncheckedCreateWithoutChatsInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutChatsInput | UserCreateOrConnectWithoutChatsInput[]
+    upsert?: UserUpsertWithWhereUniqueWithoutChatsInput | UserUpsertWithWhereUniqueWithoutChatsInput[]
+    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    update?: UserUpdateWithWhereUniqueWithoutChatsInput | UserUpdateWithWhereUniqueWithoutChatsInput[]
+    updateMany?: UserUpdateManyWithWhereWithoutChatsInput | UserUpdateManyWithWhereWithoutChatsInput[]
+    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
+  }
+
+  export type UserUncheckedUpdateManyWithoutChatsNestedInput = {
+    create?: XOR<UserCreateWithoutChatsInput, UserUncheckedCreateWithoutChatsInput> | UserCreateWithoutChatsInput[] | UserUncheckedCreateWithoutChatsInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutChatsInput | UserCreateOrConnectWithoutChatsInput[]
+    upsert?: UserUpsertWithWhereUniqueWithoutChatsInput | UserUpsertWithWhereUniqueWithoutChatsInput[]
+    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    update?: UserUpdateWithWhereUniqueWithoutChatsInput | UserUpdateWithWhereUniqueWithoutChatsInput[]
+    updateMany?: UserUpdateManyWithWhereWithoutChatsInput | UserUpdateManyWithWhereWithoutChatsInput[]
+    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -4849,6 +5382,320 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type ChatCreateWithoutCreatorInput = {
+    id?: string
+    name?: string | null
+    type: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: UserCreateNestedManyWithoutChatsInput
+  }
+
+  export type ChatUncheckedCreateWithoutCreatorInput = {
+    id?: string
+    name?: string | null
+    type: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: UserUncheckedCreateNestedManyWithoutChatsInput
+  }
+
+  export type ChatCreateOrConnectWithoutCreatorInput = {
+    where: ChatWhereUniqueInput
+    create: XOR<ChatCreateWithoutCreatorInput, ChatUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type ChatCreateManyCreatorInputEnvelope = {
+    data: ChatCreateManyCreatorInput | ChatCreateManyCreatorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ChatCreateWithoutMembersInput = {
+    id?: string
+    name?: string | null
+    type: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    creator: UserCreateNestedOneWithoutCreatedChatsInput
+  }
+
+  export type ChatUncheckedCreateWithoutMembersInput = {
+    id?: string
+    name?: string | null
+    type: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    creatorId: string
+  }
+
+  export type ChatCreateOrConnectWithoutMembersInput = {
+    where: ChatWhereUniqueInput
+    create: XOR<ChatCreateWithoutMembersInput, ChatUncheckedCreateWithoutMembersInput>
+  }
+
+  export type ChatUpsertWithWhereUniqueWithoutCreatorInput = {
+    where: ChatWhereUniqueInput
+    update: XOR<ChatUpdateWithoutCreatorInput, ChatUncheckedUpdateWithoutCreatorInput>
+    create: XOR<ChatCreateWithoutCreatorInput, ChatUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type ChatUpdateWithWhereUniqueWithoutCreatorInput = {
+    where: ChatWhereUniqueInput
+    data: XOR<ChatUpdateWithoutCreatorInput, ChatUncheckedUpdateWithoutCreatorInput>
+  }
+
+  export type ChatUpdateManyWithWhereWithoutCreatorInput = {
+    where: ChatScalarWhereInput
+    data: XOR<ChatUpdateManyMutationInput, ChatUncheckedUpdateManyWithoutCreatorInput>
+  }
+
+  export type ChatScalarWhereInput = {
+    AND?: ChatScalarWhereInput | ChatScalarWhereInput[]
+    OR?: ChatScalarWhereInput[]
+    NOT?: ChatScalarWhereInput | ChatScalarWhereInput[]
+    id?: StringFilter<"Chat"> | string
+    name?: StringNullableFilter<"Chat"> | string | null
+    type?: StringFilter<"Chat"> | string
+    createdAt?: DateTimeFilter<"Chat"> | Date | string
+    updatedAt?: DateTimeFilter<"Chat"> | Date | string
+    creatorId?: StringFilter<"Chat"> | string
+  }
+
+  export type ChatUpsertWithWhereUniqueWithoutMembersInput = {
+    where: ChatWhereUniqueInput
+    update: XOR<ChatUpdateWithoutMembersInput, ChatUncheckedUpdateWithoutMembersInput>
+    create: XOR<ChatCreateWithoutMembersInput, ChatUncheckedCreateWithoutMembersInput>
+  }
+
+  export type ChatUpdateWithWhereUniqueWithoutMembersInput = {
+    where: ChatWhereUniqueInput
+    data: XOR<ChatUpdateWithoutMembersInput, ChatUncheckedUpdateWithoutMembersInput>
+  }
+
+  export type ChatUpdateManyWithWhereWithoutMembersInput = {
+    where: ChatScalarWhereInput
+    data: XOR<ChatUpdateManyMutationInput, ChatUncheckedUpdateManyWithoutMembersInput>
+  }
+
+  export type UserCreateWithoutCreatedChatsInput = {
+    id?: string
+    email: string
+    password: string
+    name: string
+    role: $Enums.Role
+    type?: $Enums.Type
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    chats?: ChatCreateNestedManyWithoutMembersInput
+  }
+
+  export type UserUncheckedCreateWithoutCreatedChatsInput = {
+    id?: string
+    email: string
+    password: string
+    name: string
+    role: $Enums.Role
+    type?: $Enums.Type
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    chats?: ChatUncheckedCreateNestedManyWithoutMembersInput
+  }
+
+  export type UserCreateOrConnectWithoutCreatedChatsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutCreatedChatsInput, UserUncheckedCreateWithoutCreatedChatsInput>
+  }
+
+  export type UserCreateWithoutChatsInput = {
+    id?: string
+    email: string
+    password: string
+    name: string
+    role: $Enums.Role
+    type?: $Enums.Type
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdChats?: ChatCreateNestedManyWithoutCreatorInput
+  }
+
+  export type UserUncheckedCreateWithoutChatsInput = {
+    id?: string
+    email: string
+    password: string
+    name: string
+    role: $Enums.Role
+    type?: $Enums.Type
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdChats?: ChatUncheckedCreateNestedManyWithoutCreatorInput
+  }
+
+  export type UserCreateOrConnectWithoutChatsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutChatsInput, UserUncheckedCreateWithoutChatsInput>
+  }
+
+  export type UserUpsertWithoutCreatedChatsInput = {
+    update: XOR<UserUpdateWithoutCreatedChatsInput, UserUncheckedUpdateWithoutCreatedChatsInput>
+    create: XOR<UserCreateWithoutCreatedChatsInput, UserUncheckedCreateWithoutCreatedChatsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutCreatedChatsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutCreatedChatsInput, UserUncheckedUpdateWithoutCreatedChatsInput>
+  }
+
+  export type UserUpdateWithoutCreatedChatsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    type?: EnumTypeFieldUpdateOperationsInput | $Enums.Type
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    chats?: ChatUpdateManyWithoutMembersNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutCreatedChatsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    type?: EnumTypeFieldUpdateOperationsInput | $Enums.Type
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    chats?: ChatUncheckedUpdateManyWithoutMembersNestedInput
+  }
+
+  export type UserUpsertWithWhereUniqueWithoutChatsInput = {
+    where: UserWhereUniqueInput
+    update: XOR<UserUpdateWithoutChatsInput, UserUncheckedUpdateWithoutChatsInput>
+    create: XOR<UserCreateWithoutChatsInput, UserUncheckedCreateWithoutChatsInput>
+  }
+
+  export type UserUpdateWithWhereUniqueWithoutChatsInput = {
+    where: UserWhereUniqueInput
+    data: XOR<UserUpdateWithoutChatsInput, UserUncheckedUpdateWithoutChatsInput>
+  }
+
+  export type UserUpdateManyWithWhereWithoutChatsInput = {
+    where: UserScalarWhereInput
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyWithoutChatsInput>
+  }
+
+  export type UserScalarWhereInput = {
+    AND?: UserScalarWhereInput | UserScalarWhereInput[]
+    OR?: UserScalarWhereInput[]
+    NOT?: UserScalarWhereInput | UserScalarWhereInput[]
+    id?: StringFilter<"User"> | string
+    email?: StringFilter<"User"> | string
+    password?: StringFilter<"User"> | string
+    name?: StringFilter<"User"> | string
+    role?: EnumRoleFilter<"User"> | $Enums.Role
+    type?: EnumTypeFilter<"User"> | $Enums.Type
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
+  }
+
+  export type ChatCreateManyCreatorInput = {
+    id?: string
+    name?: string | null
+    type: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ChatUpdateWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: UserUpdateManyWithoutChatsNestedInput
+  }
+
+  export type ChatUncheckedUpdateWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: UserUncheckedUpdateManyWithoutChatsNestedInput
+  }
+
+  export type ChatUncheckedUpdateManyWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChatUpdateWithoutMembersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creator?: UserUpdateOneRequiredWithoutCreatedChatsNestedInput
+  }
+
+  export type ChatUncheckedUpdateWithoutMembersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creatorId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ChatUncheckedUpdateManyWithoutMembersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creatorId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type UserUpdateWithoutChatsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    type?: EnumTypeFieldUpdateOperationsInput | $Enums.Type
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdChats?: ChatUpdateManyWithoutCreatorNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutChatsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    type?: EnumTypeFieldUpdateOperationsInput | $Enums.Type
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdChats?: ChatUncheckedUpdateManyWithoutCreatorNestedInput
+  }
+
+  export type UserUncheckedUpdateManyWithoutChatsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    type?: EnumTypeFieldUpdateOperationsInput | $Enums.Type
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

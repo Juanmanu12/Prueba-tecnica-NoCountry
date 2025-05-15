@@ -2,6 +2,7 @@ import express, {Express, Request, Response} from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import authRouter from './api/auth/auth.routes';
+import userRouter from './api/user/user.routes';
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.get('/', (req: Request, res: Response) => {
   });
 
 app.use('/api/auth', authRouter);
+app.use('/api/user', userRouter)
 
 app.listen(port, () => {
     console.log(`Servidor corriendo en puerto ${port}`)
