@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import authRouter from './api/auth/auth.routes';
 import userRouter from './api/user/user.routes';
+import chatRouter from './api/chats/chat.routes';
+import messageRouter from './api/messages/message.routes';
 
 dotenv.config();
 
@@ -26,7 +28,9 @@ app.get('/', (req: Request, res: Response) => {
   });
 
 app.use('/api/auth', authRouter);
-app.use('/api/user', userRouter)
+app.use('/api/user', userRouter);
+app.use('/api/chat', chatRouter);
+app.use('/api/message', messageRouter);
 
 app.listen(port, () => {
     console.log(`Servidor corriendo en puerto ${port}`)

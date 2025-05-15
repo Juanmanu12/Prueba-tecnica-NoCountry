@@ -175,6 +175,12 @@ exports.Type = exports.$Enums.Type = {
   ADMIN: 'ADMIN'
 };
 
+exports.ChatType = exports.$Enums.ChatType = {
+  ONE_TO_ONE: 'ONE_TO_ONE',
+  SUBGROUP: 'SUBGROUP',
+  GROUP: 'GROUP'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   Chat: 'Chat',

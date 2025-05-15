@@ -19,6 +19,7 @@ model User {
   updatedAt DateTime  @updatedAt
   createdChats Chat[] @relation("ChatCreator")
   chats       Chat[]   @relation("ChatMembers")
+  message     Message[]    
 }
 
 enum Role {
@@ -37,18 +38,31 @@ enum Type {
   ADMIN
 }
 
+enum ChatType {
+  ONE_TO_ONE
+  SUBGROUP
+  GROUP
+}
+
 model Chat {
   id        String    @id @default(uuid())
   name      String?       
-  type      String
+  type      ChatType
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   creatorId String
   creator   User   @relation("ChatCreator", fields: [creatorId], references: [id], onDelete: Cascade)
-  members User[] @relation("ChatMembers")
+  members   User[] @relation("ChatMembers")
+  message   Message[]
 }
 
 model Message {
-  id        String    @id @default(uuid())
+  id        String   @id @default(uuid())
   text      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    String   // Relación con User
+  chatId    String   // Relación con Chat
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  chat      Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
 }
